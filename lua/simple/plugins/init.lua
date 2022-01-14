@@ -38,22 +38,64 @@ packer.init {
 }
 packer.startup(function(use)
   use 'wbthomason/packer.nvim'
-  use "nvim-lua/popup.nvim" 
+  use "nvim-lua/popup.nvim"
   use "nvim-lua/plenary.nvim"
-  use { "windwp/nvim-autopairs", config = "require'simple.plugins.config.autopairs'" }
-  use { "numToStr/Comment.nvim", config = "require'simple.plugins.config.comment'" }
-  use "kyazdani42/nvim-web-devicons"
-  use { "kyazdani42/nvim-tree.lua", config = "require'simple.plugins.config.nvim-tree'" }
-  use { "akinsho/bufferline.nvim", config = "require'simple.plugins.config.bufferline'" }
   use "moll/vim-bbye"
-  use { "nvim-lualine/lualine.nvim", config = "require'simple.plugins.config.lualine'" }
-  use { "akinsho/toggleterm.nvim", config = "require'simple.plugins.config.toggleterm'" }
-  use { "ahmedkhalf/project.nvim", config = "require'simple.plugins.config.project'" }
-  use { "lewis6991/impatient.nvim", config = "require'simple.plugins.config.project'" }
-  use { "lukas-reineke/indent-blankline.nvim", config = "require'simple.plugins.config.identline'" }
-  use { "goolord/alpha-nvim", config = "require'simple.plugins.config.alpha'" }
-  use "antoinemadec/FixCursorHold.nvim" -- Optional
-  use {"folke/which-key.nvim", config = "require'simple.plugins.config.whichkey'" }
+  use "antoinemadec/FixCursorHold.nvim"
+  use {
+    "windwp/nvim-autopairs",
+    config = "require'simple.plugins.config.autopairs'",
+    after = "nvim-cmp"
+  }
+  use {
+    "numToStr/Comment.nvim",
+    config = "require'simple.plugins.config.comment'"
+  }
+  use {
+    "kyazdani42/nvim-tree.lua",
+    config = "require'simple.plugins.config.nvim-tree'",
+    cmd = "NvimTreeToggle"
+  }
+  use {
+    "akinsho/bufferline.nvim",
+    requires = {"kyazdani42/nvim-web-devicons"},
+    config = "require'simple.plugins.config.bufferline'",
+    event = "BufWinEnter"
+  }
+  use {
+    "nvim-lualine/lualine.nvim",
+    requires = {"kyazdani42/nvim-web-devicons"},
+    config = "require'simple.plugins.config.lualine'",
+    event = "BufWinEnter"
+  }
+  use {
+    "akinsho/toggleterm.nvim",
+    config = "require'simple.plugins.config.toggleterm'"
+  }
+  use {
+    "ahmedkhalf/project.nvim",
+    config = "require'simple.plugins.config.project'"
+  }
+  use {
+    "lewis6991/impatient.nvim",
+    config = "require'simple.plugins.config.project'"
+  }
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    config = "require'simple.plugins.config.identline'",
+    event = "BufRead"
+  }
+  use {
+    "goolord/alpha-nvim",
+    config = "require'simple.plugins.config.alpha'"
+  }
+  -- use {
+  --   "folke/which-key.nvim",
+  --   event = "BufWinEnter",
+  --   config = "require'simple.plugins.config.whichkey'"
+  -- }
+  use { "folke/which-key.nvim", config = "require'simple.plugins.config.whichkey'"}
+
 
   -- Coloscheme
   use {
@@ -65,15 +107,30 @@ packer.startup(function(use)
 
   }
 
-  -- Autocompletion
-  use { 'hrsh7th/nvim-cmp', config="require'simple.plugins.config.cmp'" }
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
+  -- cmp plugins
+  use {
+    "hrsh7th/nvim-cmp",
+    config = "require'simple.plugins.config.cmp'"
+  } -- The completion plugin
+  use {
+    "hrsh7th/cmp-buffer",
+    after = "nvim-cmp"
+  }-- buffer completions
+  use "hrsh7th/cmp-path" -- path completions
+  use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use "hrsh7th/cmp-nvim-lsp"
 
--- LSP
-  use { "neovim/nvim-lspconfig", config = "require'simple.plugins.config.lsp'" } -- enable LSP
+  -- snippets
+  use "L3MON4D3/LuaSnip" --snippet engine
+  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+
+  -- LSP
+  use {
+    "neovim/nvim-lspconfig",
+    config = "require'simple.plugins.config.lsp'",
+    event = "BufRead",
+  } -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
@@ -81,16 +138,29 @@ packer.startup(function(use)
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
+    event = "BufWinEnter",
     run = ":TSUpdate",
     config = "require'simple.plugins.config.whichkey'",
   }
-  use "JoosepAlviste/nvim-ts-context-commentstring"
+  use {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    after = "nvim-treesitter"
+  }
 
   -- Telescope
-  use { "nvim-telescope/telescope.nvim", config = "require'simple.plugins.config.telescope'" }
+  use {
+    "nvim-telescope/telescope.nvim",
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+    -- cmd = "Telescope",
+    config = "require'simple.plugins.config.telescope'"
+  }
 
   -- Git
-  use { "lewis6991/gitsigns.nvim", config = "require'simple.plugins.config.gitsigns'" }
+  use {
+    "lewis6991/gitsigns.nvim",
+    event = "BufRead",
+    config = "require'simple.plugins.config.gitsigns'"
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
