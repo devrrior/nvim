@@ -1,2 +1,2 @@
-require "core.options"
-require "core.keybindings"
+require "simple.core.options"
+require "simple.core.keybindings"
