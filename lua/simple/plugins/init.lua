@@ -15,12 +15,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerSync
-  augroup end
-]]
+-- vim.cmd [[
+--   augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost init.lua source <afile> | PackerSync
+--   augroup end
+-- ]]
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -78,7 +78,7 @@ packer.startup(function(use)
   }
   use {
     "lewis6991/impatient.nvim",
-    config = "require'simple.plugins.config.project'"
+    config = "require'simple.plugins.config.impatient'"
   }
   use {
     "lukas-reineke/indent-blankline.nvim",
@@ -89,12 +89,12 @@ packer.startup(function(use)
     "goolord/alpha-nvim",
     config = "require'simple.plugins.config.alpha'"
   }
-  -- use {
-  --   "folke/which-key.nvim",
-  --   event = "BufWinEnter",
-  --   config = "require'simple.plugins.config.whichkey'"
-  -- }
-  use { "folke/which-key.nvim", config = "require'simple.plugins.config.whichkey'"}
+  use {
+    "folke/which-key.nvim",
+    event = "BufWinEnter",
+    config = "require'simple.plugins.config.whichkey'"
+  }
+  -- use { "folke/which-key.nvim", config = "require'simple.plugins.config.whichkey'"}
 
 
   -- Coloscheme
@@ -109,13 +109,13 @@ packer.startup(function(use)
 
   -- cmp plugins
   use {
-    "hrsh7th/nvim-cmp",
+    "hrsh7th/nvim-cmp", -- The completion plugin
     config = "require'simple.plugins.config.cmp'"
-  } -- The completion plugin
+  }
   use {
-    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-buffer", -- buffer completions
     after = "nvim-cmp"
-  }-- buffer completions
+  }
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
@@ -127,10 +127,10 @@ packer.startup(function(use)
 
   -- LSP
   use {
-    "neovim/nvim-lspconfig",
+    "neovim/nvim-lspconfig", -- enable LSP
     config = "require'simple.plugins.config.lsp'",
     event = "BufRead",
-  } -- enable LSP
+  }
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
@@ -151,7 +151,7 @@ packer.startup(function(use)
   use {
     "nvim-telescope/telescope.nvim",
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
-    -- cmd = "Telescope",
+    cmd = "Telescope",
     config = "require'simple.plugins.config.telescope'"
   }
 
@@ -160,6 +160,11 @@ packer.startup(function(use)
     "lewis6991/gitsigns.nvim",
     event = "BufRead",
     config = "require'simple.plugins.config.gitsigns'"
+  }
+
+  config = {
+    -- Move to lua dir so impatient.nvim can cache it
+    compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
