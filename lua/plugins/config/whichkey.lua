@@ -69,6 +69,15 @@ local setup = {
   },
 }
 
+local sopts = {
+  mode = "n", -- NORMAL mode
+  prefix = "g",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
+
 
 local opts = {
   mode = "n", -- NORMAL mode
@@ -88,6 +97,11 @@ local vopts = {
   nowait = true, -- use `nowait` when creating keymaps
 }
 
+local smappings = {
+  ["d"] = {'<cmd>lua vim.lsp.buf.definition()<CR>', "Go to definition"},
+  ["D"] = {'<cmd>lua vim.lsp.buf.declaration()<CR>', "Go to declaration"},
+}
+
 local vmappings = {
   ["/"] = { "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment" },
 }
@@ -95,8 +109,6 @@ local vmappings = {
 local mappings = {
   ["/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<cr>", "Comment" },
   ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
-  -- ["d"] = {'<cmd>lua vim.lsp.buf.definition()<CR>', "Go to definition"},
-  -- ["D"] = {'<cmd>lua vim.lsp.buf.declaration()<CR>', "Go to declaration"},
   ["b"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
@@ -168,7 +180,7 @@ local mappings = {
       "Prev Diagnostic",
     },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
+    q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
     S = {
@@ -201,5 +213,6 @@ local mappings = {
 }
 
 which_key.setup(setup)
+which_key.register(smappings, sopts)
 which_key.register(mappings, opts)
 which_key.register(vmappings, vopts)

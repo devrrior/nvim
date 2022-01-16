@@ -1,3 +1,4 @@
-require "simple.core.options"
-require "simple.core.keybindings"
-require "simple.plugins"
+-- Config Simple Neovim
+require "core.options"
+require "core.keybindings"
+require "plugins"

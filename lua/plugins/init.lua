@@ -37,64 +37,69 @@ packer.init {
   },
 }
 packer.startup(function(use)
-  use 'wbthomason/packer.nvim'
+  use "wbthomason/packer.nvim"
   use "nvim-lua/popup.nvim"
   use "nvim-lua/plenary.nvim"
   use "moll/vim-bbye"
   use "antoinemadec/FixCursorHold.nvim"
   use {
     "windwp/nvim-autopairs",
-    config = "require'simple.plugins.config.autopairs'",
+    config = "require'plugins.config.autopairs'",
     after = "nvim-cmp"
   }
   use {
     "numToStr/Comment.nvim",
-    config = "require'simple.plugins.config.comment'"
+    config = "require'plugins.config.comment'"
   }
   use {
     "kyazdani42/nvim-tree.lua",
-    config = "require'simple.plugins.config.nvim-tree'",
+    requires = {"kyazdani42/nvim-web-devicons"},
+    config = "require'plugins.config.nvim-tree'",
     cmd = "NvimTreeToggle"
   }
   use {
     "akinsho/bufferline.nvim",
     requires = {"kyazdani42/nvim-web-devicons"},
-    config = "require'simple.plugins.config.bufferline'",
+    config = "require'plugins.config.bufferline'",
     event = "BufWinEnter"
   }
   use {
     "nvim-lualine/lualine.nvim",
     requires = {"kyazdani42/nvim-web-devicons"},
-    config = "require'simple.plugins.config.lualine'",
+    config = "require'plugins.config.lualine'",
     event = "BufWinEnter"
   }
   use {
     "akinsho/toggleterm.nvim",
-    config = "require'simple.plugins.config.toggleterm'"
+    config = "require'plugins.config.toggleterm'"
   }
   use {
     "ahmedkhalf/project.nvim",
-    config = "require'simple.plugins.config.project'"
+    config = "require'plugins.config.project'"
   }
   use {
     "lewis6991/impatient.nvim",
-    config = "require'simple.plugins.config.impatient'"
+    config = "require'plugins.config.impatient'"
   }
   use {
     "lukas-reineke/indent-blankline.nvim",
-    config = "require'simple.plugins.config.identline'",
+    config = "require'plugins.config.identline'",
     event = "BufRead"
   }
   use {
     "goolord/alpha-nvim",
-    config = "require'simple.plugins.config.alpha'"
+    config = "require'plugins.config.alpha'",
+    event = "BufWinEnter",
   }
   use {
     "folke/which-key.nvim",
     event = "BufWinEnter",
-    config = "require'simple.plugins.config.whichkey'"
+    config = "require'plugins.config.whichkey'"
   }
-  -- use { "folke/which-key.nvim", config = "require'simple.plugins.config.whichkey'"}
+  use {
+    "kyazdani42/nvim-web-devicons",
+    config = "require'plugins.config.icons'"
+  }
 
 
   -- Coloscheme
@@ -110,7 +115,7 @@ packer.startup(function(use)
   -- cmp plugins
   use {
     "hrsh7th/nvim-cmp", -- The completion plugin
-    config = "require'simple.plugins.config.cmp'"
+    config = "require'plugins.config.cmp'"
   }
   use {
     "hrsh7th/cmp-buffer", -- buffer completions
@@ -118,18 +123,28 @@ packer.startup(function(use)
   }
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use {
+    "saadparwaiz1/cmp_luasnip", -- snippet completions
+    after = "LuaSnip"
+  }
   use "hrsh7th/cmp-nvim-lsp"
 
   -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  use {
+    "L3MON4D3/LuaSnip", --snippet engine
+    after = "nvim-cmp",
+  }
+  use {
+    "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+    event = "InsertEnter",
+    after = "nvim-cmp",
+  }
 
   -- LSP
   use {
     "neovim/nvim-lspconfig", -- enable LSP
-    config = "require'simple.plugins.config.lsp'",
     event = "BufRead",
+    config = "require'plugins.config.lsp'",
   }
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
@@ -138,9 +153,9 @@ packer.startup(function(use)
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
-    event = "BufWinEnter",
+    event = "BufRead",
     run = ":TSUpdate",
-    config = "require'simple.plugins.config.whichkey'",
+    config = "require'plugins.config.whichkey'",
   }
   use {
     "JoosepAlviste/nvim-ts-context-commentstring",
@@ -152,14 +167,14 @@ packer.startup(function(use)
     "nvim-telescope/telescope.nvim",
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
     cmd = "Telescope",
-    config = "require'simple.plugins.config.telescope'"
+    config = "require'plugins.config.telescope'"
   }
 
   -- Git
   use {
     "lewis6991/gitsigns.nvim",
     event = "BufRead",
-    config = "require'simple.plugins.config.gitsigns'"
+    config = "require'plugins.config.gitsigns'"
   }
 
   config = {
