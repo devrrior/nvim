@@ -103,13 +103,20 @@ packer.startup(function(use)
 
 
   -- Coloscheme
+  -- use {
+  --   "Mofiqul/vscode.nvim",
+  --   config =  function()
+  --     vim.g.vscode_style = "dark"
+  --     vim.cmd('colorscheme vscode')
+  --   end
+  -- }
   use {
-    "Mofiqul/vscode.nvim",
-    config =  function()
-      vim.g.vscode_style = "dark"
-      vim.cmd('colorscheme vscode')
+    "ellisonleao/gruvbox.nvim",
+    config = function()
+        vim.o.background = "dark"
+        vim.g.gruvbox_contrast_dark = "hard"
+        vim.cmd([[colorscheme gruvbox]])
     end
-
   }
 
   -- cmp plugins
@@ -153,7 +160,7 @@ packer.startup(function(use)
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
-    event = "BufRead",
+    -- event = "BufRead",
     run = ":TSUpdate",
     config = "require'plugins.config.whichkey'",
   }
@@ -176,6 +183,8 @@ packer.startup(function(use)
     event = "BufRead",
     config = "require'plugins.config.gitsigns'"
   }
+
+  use {"ThePrimeagen/vim-be-good"}
 
   config = {
     -- Move to lua dir so impatient.nvim can cache it

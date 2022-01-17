@@ -127,7 +127,7 @@ end
 lualine.setup({
 	options = {
 		icons_enabled = true,
-		theme = custom_theme,
+    theme = "gruvbox",
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
@@ -136,12 +136,14 @@ lualine.setup({
 	sections = {
 		lualine_a = { icon_main },
 		lualine_b = { file_name },
-		lualine_c = { { dir_name, color = { bg = colors.dark } }, diagnostics, lsp_progress },
+		-- lualine_c = { { dir_name, color = { bg = colors.dark } }, diagnostics, lsp_progress },
+		lualine_c = {  dir_name, diagnostics, lsp_progress },
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_x = {
       filetype,
       diff,
-      { 'branch', color = { bg = colors.dark }, icons_enabled = true, icon = "" },
+      -- { 'branch', color = { bg = colors.dark }, icons_enabled = true, icon = "" },
+      { 'branch', icons_enabled = true, icon = "" },
     },
 		lualine_y = { { 'mode', icons_enabled = true, icon = " "} },
 		lualine_z = { current_line },
