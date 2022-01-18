@@ -66,38 +66,22 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 keymap('n', ',p', '"0p', {})
 keymap('n', ',P', '"0P', {})
 
--- Telescope --
-keymap('n', '<Leader>f', ':lua require("telescope.builtin").find_files(require("telescope.themes").get_dropdown{previewer = false})<cr>', opts)
-keymap('n', '<Leader>t', ':Telescope live_grep theme=ivy<cr>', opts)
-keymap('n', '<Leader>p', ':lua require("telescope").extensions.projects.projects()<cr>', opts)
-keymap('n', '<Leader>b', ':Telescope buffers<cr>', opts)
+-- Split window
+keymap('n', 'vs', ':vs<CR>', opts)
+keymap('n', 'sp', ':sp<CR>', opts)
 
--- Remove buffer --
-keymap('n', '<Leader>c', ':Bdelete<cr>', opts)
-
--- Comment --
-keymap('n', '<Leader>/', ':lua require("Comment.api").toggle_current_linewise()<cr>', opts)
-keymap('v', '<Leader>/', '<ESC>:lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', opts)
-
--- No Highlight --
-keymap('n', '<Leader>h', ':nohlsearch<CR>', opts)
-
--- LSP --
-keymap('n', '<Leader>lf', ':lua vim.lsp.buf.formatting()<cr>', opts)
-keymap('n', '<Leader>lq', ':lua vim.diagnostic.setloclist()<cr>', opts)
-keymap('n', '<C-\\>', ':ToggleTerm direction=float<cr>', opts)
-
--- Goto declaration --
-keymap('n', 'gD', ':lua vim.lsp.buf.declaration()<cr>', opts)
-keymap('n', 'gd', ':lua vim.lsp.buf.definition()<cr>', opts)
+-- Replace word
+keymap('n', '<C-S>', ':%s/', { noremap = true })
 
 -- Explore --
-keymap('n', '<Leader>e', ':NvimTreeToggle<cr>', opts)
-
+keymap('n', '<Leader>e', ':Lexplore<CR> :vertical resize 30<CR>', opts)
+vim.g["netrw_banner"] = 0
+vim.g["netrw_liststyle"] = 3
+vim.g["netrw_winsize"] = 25
 
 -- Terminal --
 -- Better terminal navigation
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
+keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
+keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
+keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
