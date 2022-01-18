@@ -79,9 +79,22 @@ vim.g["netrw_banner"] = 0
 vim.g["netrw_liststyle"] = 3
 vim.g["netrw_winsize"] = 25
 
+-- Comment
+keymap('n', '<Leader>/', ':lua require("Comment.api").toggle_current_linewise()<CR>', opts)
+keymap('v', '<Leader>/', ':lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', opts)
+
+-- Delete buffer
+keymap('n', '<Leader>c',':Bdelete!<CR>',opts)
+
+
+keymap('n', '<C-P>', "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
+keymap('n', '<C-F>', "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
+keymap('n', '<C-B>', "<cmd>lua require('telescope.builtin').buffers()<CR>", opts)
+keymap('n', '<C-T>', "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
+
 -- Terminal --
 -- Better terminal navigation
-keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
-keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
-keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
-keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+-- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
+-- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
+-- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
+-- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
