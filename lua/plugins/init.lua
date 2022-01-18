@@ -32,10 +32,21 @@ packer.init {
 
 packer.startup(function(use)
   use { 'wbthomason/packer.nvim' }
+  use { 'tpope/vim-commentary' }
+  use {
+    "blackCauldron7/surround.nvim",
+    config = function()
+      require"surround".setup {mappings_style = "surround"}
+    end
+  }
+
+  -- Colorscheme
   use {
     "ellisonleao/gruvbox.nvim",
     config = "require'plugins.config.colorscheme'"
   }
+
+  -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
     -- event = "BufRead",
@@ -46,17 +57,29 @@ packer.startup(function(use)
     "JoosepAlviste/nvim-ts-context-commentstring",
     after = "nvim-treesitter",
   }
+
+  -- Lualine
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = 'require"plugins.config.lualine"',
   }
+
+  -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} },
     config = 'require"plugins.config.telescope"',
   }
   use { 'ThePrimeagen/git-worktree.nvim' }
+
+  -- COC
+  use {
+    'neoclide/coc.nvim',
+    branch = 'release',
+    config = 'require"plugins.config.coc"',
+  }
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
