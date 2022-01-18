@@ -58,20 +58,9 @@ packer.startup(function(use)
     cmd = "NvimTreeToggle"
   }
   use {
-    "akinsho/bufferline.nvim",
-    requires = {"kyazdani42/nvim-web-devicons"},
-    config = "require'plugins.config.bufferline'",
-    event = "BufWinEnter"
-  }
-  use {
-    "nvim-lualine/lualine.nvim",
-    requires = {"kyazdani42/nvim-web-devicons"},
-    config = "require'plugins.config.lualine'",
-    event = "BufWinEnter"
-  }
-  use {
     "akinsho/toggleterm.nvim",
-    config = "require'plugins.config.toggleterm'"
+    config = "require'plugins.config.toggleterm'",
+    cmd = "ToggleTerm",
   }
   use {
     "ahmedkhalf/project.nvim",
@@ -87,29 +76,11 @@ packer.startup(function(use)
     event = "BufRead"
   }
   use {
-    "goolord/alpha-nvim",
-    config = "require'plugins.config.alpha'",
-    event = "BufWinEnter",
-  }
-  use {
-    "folke/which-key.nvim",
-    event = "BufWinEnter",
-    config = "require'plugins.config.whichkey'"
-  }
-  use {
     "kyazdani42/nvim-web-devicons",
-    config = "require'plugins.config.icons'"
+    config = "require'plugins.config.icons'",
   }
-
 
   -- Coloscheme
-  -- use {
-  --   "Mofiqul/vscode.nvim",
-  --   config =  function()
-  --     vim.g.vscode_style = "dark"
-  --     vim.cmd('colorscheme vscode')
-  --   end
-  -- }
   use {
     "ellisonleao/gruvbox.nvim",
     config = function()
@@ -153,7 +124,10 @@ packer.startup(function(use)
     event = "BufRead",
     config = "require'plugins.config.lsp'",
   }
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use {
+    "williamboman/nvim-lsp-installer",
+    cmd = "LspInstallInfo"
+  } -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
