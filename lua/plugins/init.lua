@@ -31,7 +31,32 @@ packer.init {
 }
 
 packer.startup(function(use)
-
+  use { 'wbthomason/packer.nvim' }
+  use {
+    "ellisonleao/gruvbox.nvim",
+    config = "require'plugins.config.colorscheme'"
+  }
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    -- event = "BufRead",
+    run = ":TSUpdate",
+    config = "require'plugins.config.treesitter'",
+  }
+  use {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    after = "nvim-treesitter",
+  }
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = 'require"plugins.config.lualine"',
+  }
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} },
+    config = 'require"plugins.config.telescope"',
+  }
+  use { 'ThePrimeagen/git-worktree.nvim' }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
