@@ -86,11 +86,14 @@ keymap('v', '<Leader>/', ':lua require("Comment.api").toggle_linewise_op(vim.fn.
 -- Delete buffer
 keymap('n', '<Leader>c',':Bdelete!<CR>',opts)
 
+-- Telescope
+keymap('n', '<C-P>', ':lua require("telescope.builtin").find_files(require("telescope.themes").get_ivy({}))<CR>', opts)
+keymap('n', '<C-F>', ':lua require("telescope.builtin").live_grep(require("telescope.themes").get_ivy({}))<CR>', opts)
+keymap('n', '<C-B>', ':lua require("telescope.builtin").buffers(require("telescope.themes").get_ivy({}))<CR>', opts)
+keymap('n', '<C-T>', ':lua require("telescope").extensions.git_worktree.git_worktrees(require("telescope.themes").get_ivy({}))<CR>', opts)
 
-keymap('n', '<C-P>', "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
-keymap('n', '<C-F>', "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
-keymap('n', '<C-B>', "<cmd>lua require('telescope.builtin').buffers()<CR>", opts)
-keymap('n', '<C-T>', "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
+-- QuickFix
+keymap('n', '<Leader>l', ':lua vim.diagnostic.setloclist()<CR>', opts)
 
 -- Terminal --
 -- Better terminal navigation
