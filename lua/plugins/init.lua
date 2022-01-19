@@ -54,7 +54,12 @@ packer.startup(function(use)
   -- Colorscheme
   use {
     'ellisonleao/gruvbox.nvim',
-    config = "require'plugins.config.colorscheme'"
+    config = function ()
+      vim.g.gruvbox_contrast_dark = "hard"
+      vim.cmd([[
+        colorscheme gruvbox
+      ]])
+    end
   }
 
   -- Treesitter
@@ -69,31 +74,83 @@ packer.startup(function(use)
     after = "nvim-treesitter",
   }
 
-  -- Bufferline
-  use {
-    'akinsho/bufferline.nvim',
-    requires = {'kyazdani42/nvim-web-devicons'},
-    config = "require'plugins.config.bufferline'",
-    event = "BufWinEnter"
-  }
+  -- -- Bufferline
+  -- use {
+  --   'akinsho/bufferline.nvim',
+  --   requires = {'kyazdani42/nvim-web-devicons'},
+  --   config = "require'plugins.config.bufferline'",
+  --   event = "BufWinEnter"
+  -- }
 
   -- Lualine
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    config = 'require"plugins.config.lualine"',
-  }
+  -- use {
+  --   'nvim-lualine/lualine.nvim',
+  --   requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+  --   config = 'require"plugins.config.lualine"',
+  -- }
 
   -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
-    cmd = 'Telescope',
-    requires = { {'nvim-lua/plenary.nvim'} },
     config = 'require"plugins.config.telescope"',
+    requires = {'nvim-lua/plenary.nvim'},
+    -- cmd = 'Telescope',
   }
   use {
     'ThePrimeagen/git-worktree.nvim',
   }
+
+  -- cmp plugins
+  -- use {
+  --   'hrsh7th/nvim-cmp', -- The completion plugin
+  --   config = "require'plugins.config.cmp'",
+  --   even = 'InsertEnter'
+  -- }
+  -- use {
+  --   'hrsh7th/cmp-buffer', -- buffer completions
+  --   after = "nvim-cmp"
+  -- }
+  -- use {
+  --   'hrsh7th/cmp-path', -- path completions
+  --   after = "nvim-cmp"
+  -- }
+  -- use {
+  --   "hrsh7th/cmp-cmdline", -- cmdline completions
+  --   after = "nvim-cmp"
+  -- }
+  -- use {
+  --   "saadparwaiz1/cmp_luasnip", -- snippet completions
+  --   after = "LuaSnip"
+  -- }
+  -- use "hrsh7th/cmp-nvim-lsp"
+
+  -- LSP
+  -- use {
+  --   "neovim/nvim-lspconfig", -- enable LSP
+  --   -- event = "BufRead",
+  --   config = "require'plugins.config.lsp'",
+  -- }
+  -- use {
+  --   'williamboman/nvim-lsp-installer', -- simple to use language server installer
+  --   even = 'InsertEnter'
+  -- }
+  -- use {
+  --   'tamago324/nlsp-settings.nvim', -- language server settings defined in json for
+  --   event = "InsertEnter",
+  -- }
+  -- use {
+  --   'jose-elias-alvarez/null-ls.nvim', -- for formatters and linters
+  --   event = "InsertEnter",
+  -- }
+  -- snippets
+  -- use {
+  --   "L3MON4D3/LuaSnip", --snippet engine
+  --   event = "InsertEnter",
+  -- }
+  -- use {
+  --   "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+  --   event = "InsertEnter",
+  -- }
 
   -- COC
   use {
