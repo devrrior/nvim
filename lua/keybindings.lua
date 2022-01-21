@@ -42,8 +42,8 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- Insert --
 -- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
-keymap("i", "kj", "<ESC>", opts)
+-- keymap("i", "jk", "<ESC>", opts)
+-- keymap("i", "kj", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -74,10 +74,7 @@ keymap('n', 'sp', ':sp<CR>', opts)
 keymap('n', '<C-S>', ':%s/', { noremap = true })
 
 -- Explore --
-keymap('n', '<Leader>e', ':Lexplore<CR> :vertical resize 30<CR>', opts)
-vim.g["netrw_banner"] = 0
-vim.g["netrw_liststyle"] = 3
-vim.g["netrw_winsize"] = 25
+keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', opts)
 
 -- Comment
 keymap('n', '<Leader>/', ':lua require("Comment.api").toggle_current_linewise()<CR>', opts)
@@ -93,7 +90,7 @@ keymap('n', '<C-B>', ':lua require("telescope.builtin").buffers(require("telesco
 keymap('n', '<C-T>', ':lua require("telescope").extensions.git_worktree.git_worktrees(require("telescope.themes").get_ivy({}))<CR>', opts)
 
 -- QuickFix
-keymap('n', '<Leader>l', ':lua vim.diagnostic.setloclist()<CR>', opts)
+-- keymap('n', '<Leader>l', ':lua vim.diagnostic.setloclist()<CR>', opts)
 
 -- Terminal --
 -- Better terminal navigation
