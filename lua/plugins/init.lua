@@ -35,6 +35,12 @@ packer.startup(function(use)
   use 'moll/vim-bbye'
 
   use {
+    "windwp/nvim-autopairs",
+    config = "require'plugins.config.autopairs'",
+    after = "nvim-cmp"
+  }
+
+  use {
     'numToStr/Comment.nvim',
     config = 'require"plugins.config.comment"'
   }
@@ -61,6 +67,20 @@ packer.startup(function(use)
       ]])
     end
   }
+  --
+  -- use {
+  --   'folke/tokyonight.nvim',
+  --   config = function ()
+  --     vim.cmd([[
+  --       colorscheme tokyonight
+  --     ]])
+  --   end
+  -- }
+  -- use {
+  --   "catppuccin/nvim",
+  --   as = "catppuccin",
+  --   config = "require'plugins.config.colorscheme'"
+  -- }
 
   -- Treesitter
   use {
@@ -74,6 +94,14 @@ packer.startup(function(use)
     after = "nvim-treesitter",
   }
 
+  -- Nvim Tree
+  use {
+    "kyazdani42/nvim-tree.lua",
+    requires = {"kyazdani42/nvim-web-devicons"},
+    config = "require'plugins.config.nvim-tree'",
+    cmd = "NvimTreeToggle"
+  }
+
   -- -- Bufferline
   -- use {
   --   'akinsho/bufferline.nvim',
@@ -83,96 +111,103 @@ packer.startup(function(use)
   -- }
 
   -- Lualine
-  -- use {
-  --   'nvim-lualine/lualine.nvim',
-  --   requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-  --   config = 'require"plugins.config.lualine"',
-  -- }
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = 'require"plugins.config.lualine"',
+  }
 
   -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+    cmd = 'Telescope',
     config = 'require"plugins.config.telescope"',
-    requires = {'nvim-lua/plenary.nvim'},
-    -- cmd = 'Telescope',
   }
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
   use {
     'ThePrimeagen/git-worktree.nvim',
   }
 
   -- cmp plugins
-  -- use {
-  --   'hrsh7th/nvim-cmp', -- The completion plugin
-  --   config = "require'plugins.config.cmp'",
-  --   even = 'InsertEnter'
-  -- }
-  -- use {
-  --   'hrsh7th/cmp-buffer', -- buffer completions
-  --   after = "nvim-cmp"
-  -- }
-  -- use {
-  --   'hrsh7th/cmp-path', -- path completions
-  --   after = "nvim-cmp"
-  -- }
-  -- use {
-  --   "hrsh7th/cmp-cmdline", -- cmdline completions
-  --   after = "nvim-cmp"
-  -- }
-  -- use {
-  --   "saadparwaiz1/cmp_luasnip", -- snippet completions
-  --   after = "LuaSnip"
-  -- }
-  -- use "hrsh7th/cmp-nvim-lsp"
+  use {
+    'hrsh7th/nvim-cmp', -- The completion plugin
+    config = "require'plugins.config.cmp'",
+    event = 'InsertEnter'
+  }
+  use {
+    'hrsh7th/cmp-buffer', -- buffer completions
+    after = "nvim-cmp"
+  }
+  use {
+    'hrsh7th/cmp-path', -- path completions
+    after = "nvim-cmp"
+  }
+  use {
+    "hrsh7th/cmp-cmdline", -- cmdline completions
+    after = "nvim-cmp"
+  }
+  use {
+    "saadparwaiz1/cmp_luasnip", -- snippet completions
+    after = "LuaSnip"
+  }
+  use "hrsh7th/cmp-nvim-lsp"
 
   -- LSP
-  -- use {
-  --   "neovim/nvim-lspconfig", -- enable LSP
-  --   -- event = "BufRead",
-  --   config = "require'plugins.config.lsp'",
-  -- }
-  -- use {
-  --   'williamboman/nvim-lsp-installer', -- simple to use language server installer
-  --   even = 'InsertEnter'
-  -- }
-  -- use {
-  --   'tamago324/nlsp-settings.nvim', -- language server settings defined in json for
-  --   event = "InsertEnter",
-  -- }
-  -- use {
-  --   'jose-elias-alvarez/null-ls.nvim', -- for formatters and linters
-  --   event = "InsertEnter",
-  -- }
-  -- snippets
-  -- use {
-  --   "L3MON4D3/LuaSnip", --snippet engine
-  --   event = "InsertEnter",
-  -- }
-  -- use {
-  --   "rafamadriz/friendly-snippets", -- a bunch of snippets to use
-  --   event = "InsertEnter",
-  -- }
-
-  -- COC
   use {
-    'neoclide/coc.nvim',
-    branch = 'release',
-    config = 'require"plugins.config.coc"',
+    "neovim/nvim-lspconfig", -- enable LSP
+    event = "BufRead",
+    config = "require'plugins.config.lsp'",
+  }
+  use {
+    'williamboman/nvim-lsp-installer', -- simple to use language server installer
+    even = 'InsertEnter'
+  }
+  use {
+    'tamago324/nlsp-settings.nvim', -- language server settings defined in json for
+    event = "InsertEnter",
+  }
+  use {
+    'jose-elias-alvarez/null-ls.nvim', -- for formatters and linters
+    event = "InsertEnter",
+  }
+  -- snippets
+  use {
+    "L3MON4D3/LuaSnip", --snippet engine
+    event = "InsertEnter",
+  }
+  use {
+    "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+    event = "InsertEnter",
   }
 
-  -- Git
+  use {
+    "kyazdani42/nvim-web-devicons",
+    config = "require'plugins.config.icons'"
+  }
+
+  -- COC
   -- use {
-  --   "lewis6991/gitsigns.nvim",
-  --   event = "BufRead",
-  --   config = "require'plugins.config.gitsigns'"
+  --   'neoclide/coc.nvim',
+  --   branch = 'release',
+  --   config = 'require"plugins.config.coc"',
   -- }
+
+  -- Git
+  use {
+    "lewis6991/gitsigns.nvim",
+    event = "BufRead",
+    config = "require'plugins.config.gitsigns'"
+  }
 
   use {'ThePrimeagen/vim-be-good'}
 
-  config = {
-    -- Move to lua dir so impatient.nvim can cache it
-    compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
-  }
-
+  -- config = {
+  --   -- Move to lua dir so impatient.nvim can cache it
+  --   compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
+  -- }
+  --
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
