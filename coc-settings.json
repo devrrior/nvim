@@ -1,0 +1,43 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "javascript",
+    "graphql",
+    "html",
+    "yaml",
+    "json",
+    "python"
+  ],
+
+  "coc.preferences.useQuickfixForLocations": true,
+
+  // python config
+  // "python.linting.enabled": true,
+  // "python.linting.pylintEnabled": true,
+
+  "snippets.ultisnips.directories": ["UltiSnips", "~/.config/nvim/utils/snips"],
+
+  "languageserver": {
+    "lua": {
+      "command": "/Users/fernando/.local/share/lua-language-server/bin/lua-language-server",
+      "args": [
+        "-E",
+        "/Users/fernando/.local/share/lua-language-server/bin/main.lua"
+      ],
+      "filetypes": ["lua"],
+      "settings": {
+        "Lua": {
+          "workspace.library": {
+            "/usr/share/nvim/runtime/lua": true,
+            "/usr/share/nvim/runtime/lua/vim": true,
+            "/usr/share/nvim/runtime/lua/vim/lsp": true
+          },
+          "diagnostics": {
+            "globals": ["vim"]
+          }
+        }
+      }
+    }
+  }
+}
