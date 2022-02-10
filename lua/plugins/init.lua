@@ -102,13 +102,13 @@ packer.startup(function(use)
     cmd = "NvimTreeToggle"
   }
 
-  -- -- Bufferline
-  -- use {
-  --   'akinsho/bufferline.nvim',
-  --   requires = {'kyazdani42/nvim-web-devicons'},
-  --   config = "require'plugins.config.bufferline'",
-  --   event = "BufWinEnter"
-  -- }
+  -- Bufferline
+  use {
+    'akinsho/bufferline.nvim',
+    requires = {'kyazdani42/nvim-web-devicons'},
+    config = "require'plugins.config.bufferline'",
+    event = "BufWinEnter"
+  }
 
   -- Lualine
   use {
@@ -150,7 +150,7 @@ packer.startup(function(use)
   }
   use {
     "saadparwaiz1/cmp_luasnip", -- snippet completions
-    after = "LuaSnip"
+    -- after = "LuaSnip"
   }
   use "hrsh7th/cmp-nvim-lsp"
 
@@ -175,11 +175,11 @@ packer.startup(function(use)
   -- snippets
   use {
     "L3MON4D3/LuaSnip", --snippet engine
-    event = "InsertEnter",
+    -- event = "InsertEnter",
   }
   use {
     "rafamadriz/friendly-snippets", -- a bunch of snippets to use
-    event = "InsertEnter",
+    -- event = "InsertEnter",
   }
 
   use {
