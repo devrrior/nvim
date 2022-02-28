@@ -92,6 +92,13 @@ keymap('n', '<C-T>', ':lua require("telescope").extensions.git_worktree.git_work
 -- QuickFix
 -- keymap('n', '<Leader>l', ':lua vim.diagnostic.setloclist()<CR>', opts)
 
+-- Go to preview
+-- keymap('n', 'gp', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>', opts)
+-- keymap('n', 'gi', '<cmd>lua require("goto-preview").goto_preview_implementation()<CR>', opts)
+-- keymap('n', 'gP', '<cmd>lua require("goto-preview").close_all_win()<CR>', opts)
+-- Only set if you have telescope installed
+-- keymap('n', 'gr', '<cmd>lua require("goto-preview").goto_preview_references()<CR>', opts )
+
 -- Terminal --
 -- Better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
