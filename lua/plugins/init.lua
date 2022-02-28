@@ -35,9 +35,37 @@ packer.startup(function(use)
   use 'moll/vim-bbye'
 
   use {
-    "windwp/nvim-autopairs",
+    'windwp/nvim-autopairs',
     config = "require'plugins.config.autopairs'",
     after = "nvim-cmp"
+  }
+
+  use {
+    'andymass/vim-matchup',
+    event = "CursorMoved",
+    config = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    end,
+  }
+
+
+  use {
+  "rmagatti/goto-preview",
+  config = function()
+  require('goto-preview').setup {
+        width = 120; -- Width of the floating window
+        height = 25; -- Height of the floating window
+        default_mappings = true; -- Bind default mappings
+        debug = false; -- Print debug information
+        opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
+        post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
+        -- You can use "default_mappings = true" setup option
+        -- Or explicitly set keybindings
+        -- vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>")
+        -- vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
+        -- vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>")
+    }
+  end
   }
 
   use {
@@ -51,22 +79,26 @@ packer.startup(function(use)
   }
 
   use {
-    'blackCauldron7/surround.nvim',
-    config = function()
-      require"surround".setup {mappings_style = "surround"}
-    end
+    "tpope/vim-surround",
+    keys = {"c", "d", "y"}
+  }
+
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = 'require"plugins.config.indentline"'
   }
 
   -- Colorscheme
-  use {
-    'ellisonleao/gruvbox.nvim',
-    config = function ()
-      vim.g.gruvbox_contrast_dark = "hard"
-      vim.cmd([[
-        colorscheme gruvbox
-      ]])
-    end
-  }
+  -- use {
+  --   'ellisonleao/gruvbox.nvim',
+  --   config = function ()
+  --     vim.g.gruvbox_contrast_dark = "hard"
+  --     vim.cmd([[
+  --       colorscheme gruvbox
+  --     ]])
+      -- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+    -- end
+  -- }
   --
   -- use {
   --   'folke/tokyonight.nvim',
@@ -76,11 +108,8 @@ packer.startup(function(use)
   --     ]])
   --   end
   -- }
-  -- use {
-  --   "catppuccin/nvim",
-  --   as = "catppuccin",
-  --   config = "require'plugins.config.colorscheme'"
-  -- }
+  use { 'LunarVim/Colorschemes',
+  config = "require'plugins.config.colorscheme'"}
 
   -- Treesitter
   use {
@@ -92,6 +121,13 @@ packer.startup(function(use)
   use {
     'JoosepAlviste/nvim-ts-context-commentstring',
     after = "nvim-treesitter",
+  }
+  use {
+    'windwp/nvim-ts-autotag',
+    event = 'BufRead',
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
   }
 
   -- Nvim Tree
@@ -124,7 +160,7 @@ packer.startup(function(use)
     cmd = 'Telescope',
     config = 'require"plugins.config.telescope"',
   }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make', event="BufRead"}
 
   use {
     'ThePrimeagen/git-worktree.nvim',
@@ -134,19 +170,19 @@ packer.startup(function(use)
   use {
     'hrsh7th/nvim-cmp', -- The completion plugin
     config = "require'plugins.config.cmp'",
-    event = 'InsertEnter'
+    -- event = 'InsertEnter'
   }
   use {
     'hrsh7th/cmp-buffer', -- buffer completions
-    after = "nvim-cmp"
+    -- after = "nvim-cmp"
   }
   use {
     'hrsh7th/cmp-path', -- path completions
-    after = "nvim-cmp"
+    -- after = "nvim-cmp"
   }
   use {
     "hrsh7th/cmp-cmdline", -- cmdline completions
-    after = "nvim-cmp"
+    -- after = "nvim-cmp"
   }
   use {
     "saadparwaiz1/cmp_luasnip", -- snippet completions
@@ -170,7 +206,7 @@ packer.startup(function(use)
   }
   use {
     'jose-elias-alvarez/null-ls.nvim', -- for formatters and linters
-    event = "InsertEnter",
+    -- event = "InsertEnter",
   }
   -- snippets
   use {
