@@ -7,7 +7,7 @@ local actions = require "telescope.actions"
 
 telescope.setup {
   defaults = {
-    file_ignore_patterns = { "__pycache__", "env"},
+    file_ignore_patterns = { "__pycache__", "env", "node_modules"},
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
