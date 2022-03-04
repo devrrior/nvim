@@ -31,8 +31,20 @@ packer.init {
 }
 
 packer.startup(function(use)
+
+  use {
+    'lewis6991/impatient.nvim',
+  }
+
   use { 'wbthomason/packer.nvim' }
-  use 'moll/vim-bbye'
+
+
+  use {
+    "kyazdani42/nvim-web-devicons",
+    config = "require'plugins.config.icons'"
+  }
+
+  use { 'moll/vim-bbye' }
 
   use {
     'windwp/nvim-autopairs',
@@ -74,11 +86,6 @@ packer.startup(function(use)
   }
 
   use {
-    'lewis6991/impatient.nvim',
-    config = 'require"plugins.config.impatient"',
-  }
-
-  use {
     "tpope/vim-surround",
     keys = {"c", "d", "y"}
   }
@@ -108,8 +115,21 @@ packer.startup(function(use)
   --     ]])
   --   end
   -- }
-  use { 'LunarVim/Colorschemes',
-  config = "require'plugins.config.colorscheme'"}
+  -- use {
+  --   'LunarVim/Colorschemes',
+  --   config = "require'plugins.config.colorscheme'"
+  -- }
+
+  use {
+    'monsonjeremy/onedark.nvim',
+    config = "require'plugins.config.colorscheme'"
+  }
+
+-- Using Packer
+  use {
+    'navarasu/onedark.nvim',
+    config = 'require"plugins.config.colorscheme"'
+  }
 
   -- Treesitter
   use {
@@ -133,7 +153,6 @@ packer.startup(function(use)
   -- Nvim Tree
   use {
     "kyazdani42/nvim-tree.lua",
-    requires = {"kyazdani42/nvim-web-devicons"},
     config = "require'plugins.config.nvim-tree'",
     cmd = "NvimTreeToggle"
   }
@@ -141,7 +160,6 @@ packer.startup(function(use)
   -- Bufferline
   use {
     'akinsho/bufferline.nvim',
-    requires = {'kyazdani42/nvim-web-devicons'},
     config = "require'plugins.config.bufferline'",
     event = "BufWinEnter"
   }
@@ -149,7 +167,6 @@ packer.startup(function(use)
   -- Lualine
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = 'require"plugins.config.lualine"',
   }
 
@@ -218,11 +235,6 @@ packer.startup(function(use)
     -- event = "InsertEnter",
   }
 
-  use {
-    "kyazdani42/nvim-web-devicons",
-    config = "require'plugins.config.icons'"
-  }
-
   -- COC
   -- use {
   --   'neoclide/coc.nvim',
@@ -239,11 +251,14 @@ packer.startup(function(use)
 
   use {'ThePrimeagen/vim-be-good'}
 
-  -- config = {
-  --   -- Move to lua dir so impatient.nvim can cache it
-  --   compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
-  -- }
-  --
+  -- UI for rename
+  use {'stevearc/dressing.nvim'}
+
+  -- toggleterm
+  use {
+    'akinsho/toggleterm.nvim',
+    config = "require'plugins.config.toggleterm'"
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

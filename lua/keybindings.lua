@@ -89,6 +89,9 @@ keymap('n', '<C-F>', ':Telescope live_grep<CR>', opts)
 keymap('n', '<C-B>', ':Telescope buffers<CR>', opts)
 keymap('n', '<C-T>', ':lua require("telescope").extensions.git_worktree.git_worktrees(require("telescope.themes").get_ivy({}))<CR>', opts)
 
+-- Terminal
+keymap('n', '<Leader>g', ':lua _LAZYGIT_TOGGLE()<CR>', term_opts)
+
 -- QuickFix
 -- keymap('n', '<Leader>l', ':lua vim.diagnostic.setloclist()<CR>', opts)
 
