@@ -120,10 +120,10 @@ packer.startup(function(use)
   --   config = "require'plugins.config.colorscheme'"
   -- }
 
-  use {
-    'monsonjeremy/onedark.nvim',
-    config = "require'plugins.config.colorscheme'"
-  }
+  -- use {
+  --   'monsonjeremy/onedark.nvim',
+  --   config = "require'plugins.config.colorscheme'"
+  -- }
 
 -- Using Packer
   use {
