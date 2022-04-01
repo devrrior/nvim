@@ -100,21 +100,26 @@ packer.startup(function(use)
   --   'ellisonleao/gruvbox.nvim',
   --   config = function ()
   --     vim.g.gruvbox_contrast_dark = "hard"
+  --     vim.g.gruvbox_italic = true
+  --     -- vim.g.gruvbox_italicize_strings = true
   --     vim.cmd([[
   --       colorscheme gruvbox
   --     ]])
-      -- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
-    -- end
-  -- }
-  --
-  -- use {
-  --   'folke/tokyonight.nvim',
-  --   config = function ()
-  --     vim.cmd([[
-  --       colorscheme tokyonight
-  --     ]])
+  --     -- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
   --   end
   -- }
+  --
+  use {
+    'folke/tokyonight.nvim',
+    config = function ()
+      vim.g.tokyonight_style            = "night"
+      vim.g.tokyonight_italic_functions	= true
+      vim.g.tokyonight_italic_keywords	= true
+      vim.cmd([[
+        colorscheme tokyonight
+      ]])
+    end
+  }
   -- use {
   --   'LunarVim/Colorschemes',
   --   config = "require'plugins.config.colorscheme'"
@@ -125,11 +130,10 @@ packer.startup(function(use)
   --   config = "require'plugins.config.colorscheme'"
   -- }
 
--- Using Packer
-  use {
-    'navarasu/onedark.nvim',
-    config = 'require"plugins.config.colorscheme"'
-  }
+  -- use {
+  --   'navarasu/onedark.nvim',
+  --   config = 'require"plugins.config.colorscheme"'
+  -- }
 
   -- Treesitter
   use {
@@ -258,6 +262,23 @@ packer.startup(function(use)
   use {
     'akinsho/toggleterm.nvim',
     config = "require'plugins.config.toggleterm'"
+  }
+
+  -- LSP Signature
+  use {
+    'ray-x/lsp_signature.nvim',
+    config = "require'plugins.config.lsp-signature'"
+  }
+
+  -- Github Compilot
+  use {
+    'github/copilot.vim',
+    config = function ()
+      vim.cmd([[
+        imap <silent><script><expr> <C-L> copilot#Accept()
+        let g:copilot_no_tab_map = v:true
+      ]])
+    end
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
