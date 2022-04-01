@@ -1,0 +1,24 @@
+{
+  "useReducer": {
+      "description": "useReducer Template",
+      "prefix": "urs",
+      "body": [
+        "const [${4:state}, dispatch] = useReducer(${1:reducer}, ${2:initialState}, ${3:init})"
+      ]
+  },
+  "importDestructing": {
+    "description": "import destructing",
+    "prefix": "imd",
+    "body": ["import { ${2:second} } from '${1:first}'"]
+  },
+  "useContext": {
+    "description": "useContext Template",
+    "prefix": "ux",
+    "body": ["const { ${2:elements} } = useContext(${1:context});"]
+  },
+  "useCustomHook": {
+    "description": "useCustomHook Template",
+    "prefix": "uh",
+    "body": ["const { ${2:elements} } = ${1:customHook};"]
+  }
+}

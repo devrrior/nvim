@@ -16,6 +16,10 @@
         "path": "./snippets/react.json"
       },
       {
+        "language": "typescriptreact",
+        "path": "./snippets/react-ts.json"
+      },
+      {
         "language": "htmldjango",
         "path": "./snippets/htmldjango/tags.json"
       },
