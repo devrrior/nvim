@@ -1,5 +1,5 @@
 -- Config Simple Neovim
-require('impatient')
+-- require('impatient')
 require('options')
 require('keybindings')
 require('plugins')
