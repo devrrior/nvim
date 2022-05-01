@@ -96,30 +96,30 @@ packer.startup(function(use)
   }
 
   -- Colorscheme
-  -- use {
-  --   'ellisonleao/gruvbox.nvim',
-  --   config = function ()
-  --     vim.g.gruvbox_contrast_dark = "hard"
-  --     vim.g.gruvbox_italic = true
-  --     -- vim.g.gruvbox_italicize_strings = true
-  --     vim.cmd([[
-  --       colorscheme gruvbox
-  --     ]])
-  --     -- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
-  --   end
-  -- }
-  --
   use {
-    'folke/tokyonight.nvim',
+    'ellisonleao/gruvbox.nvim',
     config = function ()
-      vim.g.tokyonight_style            = "night"
-      vim.g.tokyonight_italic_functions	= true
-      vim.g.tokyonight_italic_keywords	= true
+      vim.g.gruvbox_contrast_dark = "hard"
+      vim.g.gruvbox_italic = true
+      -- vim.g.gruvbox_italicize_strings = true
       vim.cmd([[
-        colorscheme tokyonight
+        colorscheme gruvbox
       ]])
+      -- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
     end
   }
+  --
+  -- use {
+  --   'folke/tokyonight.nvim',
+  --   config = function ()
+  --     vim.g.tokyonight_style            = "night"
+  --     vim.g.tokyonight_italic_functions	= true
+  --     vim.g.tokyonight_italic_keywords	= true
+  --     vim.cmd([[
+  --       colorscheme tokyonight
+  --     ]])
+  --   end
+  -- }
   -- use {
   --   'LunarVim/Colorschemes',
   --   config = "require'plugins.config.colorscheme'"
@@ -132,6 +132,10 @@ packer.startup(function(use)
 
   -- use {
   --   'navarasu/onedark.nvim',
+  --   config = 'require"plugins.config.colorscheme"'
+  -- }
+  -- use {
+  --   'olimorris/onedarkpro.nvim',
   --   config = 'require"plugins.config.colorscheme"'
   -- }
 
@@ -181,7 +185,11 @@ packer.startup(function(use)
     cmd = 'Telescope',
     config = 'require"plugins.config.telescope"',
   }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make', event="BufRead"}
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make',
+    -- event="BufRead"
+  }
 
   use {
     'ThePrimeagen/git-worktree.nvim',
