@@ -14,10 +14,14 @@ null_ls.setup({
 		formatting.prettier.with({
 			extra_args = { "--single-quote", "--jsx-single-quote" },
 		}),
-		formatting.black.with({ extra_args = { "--fast", "--skip-string-normalization" } }),
+		formatting.black.with({ extra_args = { "--fast", "--skip-string-normalization", "--line-length=100" } }),
+    formatting.isort,
+
 		formatting.stylua,
 		-- diagnostics.flake8
 		formatting.clang_format,
 		-- formatting.djhtml,
+
+    diagnostics.tsc,
 	},
 })
