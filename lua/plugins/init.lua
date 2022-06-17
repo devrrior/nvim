@@ -96,19 +96,27 @@ packer.startup(function(use)
   }
 
   -- Colorscheme
-  use {
-    'ellisonleao/gruvbox.nvim',
-    config = function ()
-      vim.g.gruvbox_contrast_dark = "hard"
-      vim.g.gruvbox_italic = true
-      -- vim.g.gruvbox_italicize_strings = true
-      vim.cmd([[
-        colorscheme gruvbox
-      ]])
+  -- use {
+  --   'ellisonleao/gruvbox.nvim',
+  --   config = function ()
+  --     vim.g.gruvbox_contrast_dark = "hard"
+  --     vim.g.gruvbox_italic = true
+  --     -- vim.g.gruvbox_italicize_strings = true
+  --     vim.cmd([[
+  --       colorscheme gruvbox
+  --     ]])
       -- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+  --   end
+  -- }
+  use {
+    'LunarVim/darkplus.nvim',
+    config = function()
+    vim.cmd([[
+      colorscheme darkplus
+    ]])
+
     end
   }
-  --
   -- use {
   --   'folke/tokyonight.nvim',
   --   config = function ()
@@ -119,24 +127,6 @@ packer.startup(function(use)
   --       colorscheme tokyonight
   --     ]])
   --   end
-  -- }
-  -- use {
-  --   'LunarVim/Colorschemes',
-  --   config = "require'plugins.config.colorscheme'"
-  -- }
-
-  -- use {
-  --   'monsonjeremy/onedark.nvim',
-  --   config = "require'plugins.config.colorscheme'"
-  -- }
-
-  -- use {
-  --   'navarasu/onedark.nvim',
-  --   config = 'require"plugins.config.colorscheme"'
-  -- }
-  -- use {
-  --   'olimorris/onedarkpro.nvim',
-  --   config = 'require"plugins.config.colorscheme"'
   -- }
 
   -- Treesitter
