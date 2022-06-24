@@ -256,10 +256,10 @@ packer.startup(function(use)
 	})
 
 	-- LSP Signature
-	use({
-		"ray-x/lsp_signature.nvim",
-		config = [[require'plugins.config.lsp-signature']],
-	})
+	-- use({
+	-- 	"ray-x/lsp_signature.nvim",
+	-- 	config = [[require'plugins.config.lsp-signature']],
+	-- })
 
 	-- Github Compilot
 	use({
