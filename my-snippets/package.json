@@ -1,0 +1,33 @@
+{
+  "name": "my-snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "htmldjango"
+        ],
+        "path": "./snippets/html.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/react.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/react-ts.json"
+      },
+      {
+        "language": "htmldjango",
+        "path": "./snippets/htmldjango/tags.json"
+      },
+      {
+        "language": "htmldjango",
+        "path": "./snippets/htmldjango/filters.json"
+      }
+
+    ]
+  }
+}

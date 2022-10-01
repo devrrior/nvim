@@ -42,8 +42,8 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- Insert --
 -- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
-keymap("i", "kj", "<ESC>", opts)
+-- keymap("i", "jk", "<ESC>", opts)
+-- keymap("i", "kj", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -66,6 +66,41 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 keymap('n', ',p', '"0p', {})
 keymap('n', ',P', '"0P', {})
 
+-- Split window
+keymap('n', 'vs', ':vs<CR>', opts)
+keymap('n', 'sp', ':sp<CR>', opts)
+
+-- Replace word
+keymap('n', '<C-S>', ':%s/', { noremap = true })
+
+-- Explore --
+keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', opts)
+
+-- Comment
+keymap('n', '<Leader>/', ':lua require("Comment.api").toggle_current_linewise()<CR>', opts)
+keymap('v', '<Leader>/', ':lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', opts)
+
+-- Delete buffer
+keymap('n', '<Leader>c',':Bdelete!<CR>',opts)
+
+-- Telescope
+keymap('n', '<C-P>', ':Telescope find_files<CR>', opts)
+keymap('n', '<C-F>', ':Telescope live_grep<CR>', opts)
+keymap('n', '<C-B>', ':Telescope buffers<CR>', opts)
+keymap('n', '<C-T>', ':lua require("telescope").extensions.git_worktree.git_worktrees(require("telescope.themes").get_ivy({}))<CR>', opts)
+
+-- Terminal
+keymap('n', '<Leader>g', ':lua _LAZYGIT_TOGGLE()<CR>', term_opts)
+
+-- QuickFix
+-- keymap('n', '<Leader>l', ':lua vim.diagnostic.setloclist()<CR>', opts)
+
+-- Go to preview
+-- keymap('n', 'gp', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>', opts)
+-- keymap('n', 'gi', '<cmd>lua require("goto-preview").goto_preview_implementation()<CR>', opts)
+-- keymap('n', 'gP', '<cmd>lua require("goto-preview").close_all_win()<CR>', opts)
+-- Only set if you have telescope installed
+-- keymap('n', 'gr', '<cmd>lua require("goto-preview").goto_preview_references()<CR>', opts )
 
 -- Terminal --
 -- Better terminal navigation
@@ -73,3 +108,4 @@ keymap('n', ',P', '"0P', {})
 -- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+vim.cmd [[ command! Isort execute '!isort %' ]]
