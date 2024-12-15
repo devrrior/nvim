@@ -73,3 +73,8 @@ keymap("v", "<leader>/", "<Plug>(comment_toggle_linewise_visual)", opts)
 
 -- Neogit
 keymap("n", "<leader>gg", "<cmd>Neogit<CR>", opts)
+
+-- Bufferline
+keymap("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", opts)
+keymap("n", "<S-l>", "<cmd>BufferLineCycleNext<CR>", opts)
+keymap("n", "<leader>c", "<cmd>bd<CR>", opts)
